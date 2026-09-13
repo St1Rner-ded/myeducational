@@ -17,8 +17,19 @@
 long long sum_digits(long long n) {
     // >>> SOLUTION START (меняй только здесь)
     // TODO: твой код
-    (void)n;
-    return 0;
+    bool a=0;
+    unsigned long long sum = 0;
+    if (n==LLONG_MIN) {
+        n++;
+        a=1;
+    }
+    if (n<0) n*=(-1);
+    while (n>0) {
+        sum+=(n%10);
+        n/=10;
+    }
+    if (a==1) sum++;
+    return sum;
     // >>> SOLUTION END
 }
 
