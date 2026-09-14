@@ -27,17 +27,24 @@
 
 int count_ones_v1(unsigned n) {
     // >>> SOLUTION START (меняй только здесь)
-    // TODO: твой код
-    (void)n;
-    return 0;
+    int c=0;
+    for (int i=0; i<31; i++) {
+        if (n==0) break;
+        if (n%2==1) c++;
+        n=n>>1;
+    }
+    return c;
     // >>> SOLUTION END
 }
 
 int count_ones_v2(unsigned n) {
     // >>> SOLUTION2 START (меняй только здесь)
-    // TODO: твой код
-    (void)n;
-    return 0;
+    int c=0;
+    while (n!=0) {
+        c++;
+        n=n&(n-1);
+    }
+    return c;
     // >>> SOLUTION2 END
 }
 
