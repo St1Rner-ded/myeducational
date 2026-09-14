@@ -14,9 +14,9 @@
 
 bool is_prime(long long n) {
     // >>> SOLUTION START (меняй только здесь)
-    // TODO: твой код
-    (void)n;
-    return false;
+    if (n!=1 && n!=(-1) && n!=0 && n%2!=0 && n%3!=0 && n%5!=0 && n%7!=0) return true;
+    else if (n==2 || n==3 || n==5 || n==7) return true;
+    else return false;
     // >>> SOLUTION END
 }
 
