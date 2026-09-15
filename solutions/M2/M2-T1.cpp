@@ -28,10 +28,9 @@
 int count_ones_v1(unsigned n) {
     // >>> SOLUTION START (меняй только здесь)
     int c=0;
-    for (int i=0; i<31; i++) {
-        if (n==0) break;
-        if (n%2==1) c++;
-        n=n>>1;
+    while (n!=0){
+        if (n & 1u) ++c;
+        n>>=1;
     }
     return c;
     // >>> SOLUTION END
