@@ -33,41 +33,43 @@
 
 uint32_t flag_set(uint32_t flags, unsigned bit) {
     /* >>> SOLUTION START (меняй только здесь) */
-    /* TODO: твой код */
-    (void)flags; (void)bit;
-    return 0;
+    if (bit > 31) return flags;
+    flags |= (1u << bit);
+    return flags;
     /* >>> SOLUTION END */
 }
 
 uint32_t flag_clear(uint32_t flags, unsigned bit) {
     /* >>> SOLUTION2 START (меняй только здесь) */
-    /* TODO: твой код */
-    (void)flags; (void)bit;
-    return 0;
+    if (bit > 31) return flags;
+    flags &= ~(1u << bit);
+    return flags;
     /* >>> SOLUTION2 END */
 }
 
 uint32_t flag_toggle(uint32_t flags, unsigned bit) {
     /* >>> SOLUTION3 START (меняй только здесь) */
-    /* TODO: твой код */
-    (void)flags; (void)bit;
-    return 0;
+    if (bit > 31) return flags;
+    flags ^= (1u << bit);
+    return flags;
     /* >>> SOLUTION3 END */
 }
 
 int flag_test(uint32_t flags, unsigned bit) {
     /* >>> SOLUTION4 START (меняй только здесь) */
-    /* TODO: твой код */
-    (void)flags; (void)bit;
+    if (bit > 31) return 0;
+    if (flags & (1u << bit)) return 1;
     return 0;
     /* >>> SOLUTION4 END */
 }
 
 uint32_t pack_date(unsigned day, unsigned month, unsigned year) {
     /* >>> SOLUTION5 START (меняй только здесь) */
-    /* TODO: твой код */
-    (void)day; (void)month; (void)year;
-    return 0;
+    day &= 0x0000001Fu;
+    month = (month & 0x0000000Fu) << 5u;
+    year = (year & 0x007FFFFFu) << 9u;
+    uint32_t date = day + month + year;
+    return date;
     /* >>> SOLUTION5 END */
 }
 
