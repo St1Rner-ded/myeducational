@@ -28,7 +28,6 @@ int main() {
     scanf (" %u", &m); printf (" ur month: %x\n", m);
     scanf (" %u", &y); printf (" ur year: %x\n", y);
     printf (" ur date in HEX: %x\n", pack_date(d,m,y));
-    printf("%zu, %zu\n", sizeof("A"), sizeof('A'));
     return 0;
 }
 
