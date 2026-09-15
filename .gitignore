@@ -1,2 +1,20 @@
-solutions/L0/t
-test.cpp
+# артефакаты сборки
+t
+a.out
+*.o
+*.obj
+*.exe
+*.out
+*.ilk
+*.pdb
+build/
+cmake-build-*/
+
+# редакторы и ОС
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
