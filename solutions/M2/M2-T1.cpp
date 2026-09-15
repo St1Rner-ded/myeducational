@@ -27,10 +27,10 @@
 
 int count_ones_v1(unsigned n) {
     // >>> SOLUTION START (меняй только здесь)
-    int c=0;
-    while (n!=0){
+    int c = 0;
+    while (n) {
         if (n & 1u) ++c;
-        n>>=1;
+        n >>= 1;
     }
     return c;
     // >>> SOLUTION END
@@ -38,10 +38,10 @@ int count_ones_v1(unsigned n) {
 
 int count_ones_v2(unsigned n) {
     // >>> SOLUTION2 START (меняй только здесь)
-    int c=0;
-    while (n!=0) {
+    int c = 0;
+    while (n) {
         c++;
-        n=n&(n-1);
+        n &= (n - 1);
     }
     return c;
     // >>> SOLUTION2 END
