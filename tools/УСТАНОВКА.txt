@@ -1,0 +1,17 @@
+Установка take (один раз, 4 команды в терминале WSL)
+
+Пусть репозиторий лежит в ~/projects/myeducational — поменяй на свой путь.
+
+  cd ~/projects/myeducational
+  python3 -m zipfile -e "$(ls /mnt/c/Users/*/Downloads/wsl-tools.zip | head -1)" .
+  mkdir -p ~/bin && cp tools/take.sh ~/bin/take && chmod +x ~/bin/take
+  grep -q 'HOME/bin' ~/.bashrc || echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
+
+Проверка:
+
+  source ~/.bashrc && take --list
+
+Дальше обычный цикл: скачал файл в чате -> take --ship
+(файлы в репозитории, в папке tools/, поэтому переустановить можно с любой машины)
+
+Подробности и частые проблемы: tools/README-wsl.md
