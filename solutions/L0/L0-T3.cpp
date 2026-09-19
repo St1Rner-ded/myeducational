@@ -19,8 +19,26 @@
 
 void fizzbuzz(int from, int to) {
     // >>> SOLUTION START (меняй только здесь)
-    // TODO: твой код
-    (void)from; (void)to;
+    int buf = 0;
+    for (int cyc = from; cyc <= to; cyc++) {
+        if (cyc < 0) {
+            buf = 1;
+            cyc *= (-1);
+        }
+        if (cyc % 15 == 0) std::cout << "FizzBuzz\n";
+        else if (cyc % 3 == 0) std::cout << "Fizz\n";
+        else if (cyc % 5 == 0) std::cout << "Buzz\n";
+        else if (buf) {
+            buf = 0;
+            cyc *= (-1);
+            std::cout << cyc << "\n";
+        }
+        else std::cout << cyc << "\n";
+        if (buf) {
+            buf = 0;
+            cyc *= (-1);
+        }
+    }
     // >>> SOLUTION END
 }
 

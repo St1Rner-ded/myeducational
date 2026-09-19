@@ -68,15 +68,15 @@ uint32_t pack_date(unsigned day, unsigned month, unsigned year) {
     day &= 0x0000001Fu;
     month = (month & 0x0000000Fu) << 5u;
     year = (year & 0x007FFFFFu) << 9u;
-    uint32_t date = day + month + year;
-    return date;
+    return (day | month | year);
     /* >>> SOLUTION5 END */
 }
 
 void unpack_date(uint32_t packed, unsigned *day, unsigned *month, unsigned *year) {
     /* >>> SOLUTION6 START (меняй только здесь) */
-    /* TODO: твой код */
-    (void)packed; (void)day; (void)month; (void)year;
+    *day = packed & 0x1Fu;
+    *month = (packed >> 5u) & 0xFu;
+    *year = (packed >> 9u) & 0x7FFFFFu;
     /* >>> SOLUTION6 END */
 }
 
