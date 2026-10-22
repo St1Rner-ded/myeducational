@@ -4,8 +4,6 @@ int main (void) {
     int n = 0;
     printf ("Enter your number: ");
     scanf("%d", &n);
-    const char *str;
-    str = (n % 2 == 0 ? "EVEN" : "ODD");
-    printf ("%s\n", str);
+    printf ("%s\n", (n % 2 == 0) ? "EVEN" : "ODD");
     return 0;
 }
