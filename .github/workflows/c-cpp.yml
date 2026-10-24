@@ -1,10 +1,37 @@
 name: C11 Build Check
-on: [push, pull_request]
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    # Проверяем код сразу на двух популярных компиляторах
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Compile all C files
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Clang
         run: |
-          find thatsnew -name "*.c" -exec gcc -std=c11 -Wall -Wextra -Wpedantic -Werror -o /dev/null {} \;
+          sudo apt-get update
+          sudo apt-get install -y clang
+
+      - name: Compile and check C files
+        run: |
+          export CC=${{ matrix.compiler }}
+          echo "🛠 Проверяем файлы с помощью $CC"
+          
+          # Твои локальные флаги + санитайзеры. 
+          # Используем '\;', чтобы компилировать каждый файл по отдельности.
+          # Выводим в /dev/null, так как нам нужна только проверка сборки и линковки.
+          find thatsnew -name "*.c" -exec $CC -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wsign-conversion -Wformat=2 -Werror -fsanitize=address,undefined -o /dev/null {} \;
+          
+          echo "✅ Все файлы успешно собраны без предупреждений!"
