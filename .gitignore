@@ -10,7 +10,7 @@ build/
 cmake-build-*/
 
 # редакторы и ОС
-.vscode/*
+.vscode
 !.vscode/tasks.json
 !.vscode/launch.json
 .idea/
