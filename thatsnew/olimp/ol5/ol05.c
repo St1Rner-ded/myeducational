@@ -22,7 +22,7 @@ int main (void) {
             printf ("Your string doesn't have any vowel letters.\n");
             break;
         case 1:
-            printf ("Tour string has only one vowel letter\n");
+            printf ("Your string has only one vowel letter\n");
             break;
         default:
             printf ("Your string has [%u] vowel letters.\n", vowel_letters);
