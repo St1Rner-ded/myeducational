@@ -1,0 +1,10 @@
+name: C11 Build Check
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile all C files
+        run: |
+          find thatsnew -name "*.c" -exec gcc -std=c11 -Wall -Wextra -Wpedantic -Werror -o /dev/null {} \;
