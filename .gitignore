@@ -17,3 +17,6 @@ cmake-build-*/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# локальный конфиг OpenCode (команды/агенты — только локально)
+.opencode/
