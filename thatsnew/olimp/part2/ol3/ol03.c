@@ -28,7 +28,9 @@ int main (void) {
                 last_char = string[i];
                 break;
             case ']':
-                if (last_char == '[' || (square != 0 && round == 0))
+                if (last_char == '[' || (square != 0 && round == 0)) {
+                    
+                }
         }
     }
     return 0;

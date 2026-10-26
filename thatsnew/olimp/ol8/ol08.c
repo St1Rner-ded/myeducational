@@ -13,7 +13,7 @@ size_t strlength(const char *string) {
 
 char* is_palindrome(const char* string, const size_t len) {
     char* redacted_string = malloc(len + 1);
-
+    
 }
 
 int main (void) {
@@ -28,6 +28,5 @@ int main (void) {
     }
     printf ("Number of symbbols in your sentence: %zu\n", len);   
     printf ("%s", is_palindrome(string, len));
-    free();
     return 0;
 }
