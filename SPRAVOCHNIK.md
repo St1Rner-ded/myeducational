@@ -67,7 +67,7 @@ git add SPRAVOCHNIK.md && git commit -m "spravochnik v1.4: раздел про �
 | `unsigned long` | ⚙️ 8 / 4 | 0 | 18 446 744 073 709 551 615 | `ULONG_MAX` |
 | `long long` | 8 | −9 223 372 036 854 775 808 | 9 223 372 036 854 775 807 | `LLONG_MIN` / `LLONG_MAX` |
 | `unsigned long long` | 8 | 0 | 18 446 744 073 709 551 615 | `ULLONG_MAX` |
-| `size_t` | ⚙️ 8 (64-бит) | 0 | 18 446 744 073 709 551 615 | `SIZE_MAX` |
+| `size_t` | ⚙️ 8 (64-бит система) / 4 (32-бит система) | 0 | 18 446 744 073 709 551 615 | `SIZE_MAX` |
 | `_Bool` / `bool` | 1 | 0 | 1 | — |
 | любой указатель | ⚙️ 8 | — | — | — |
 
