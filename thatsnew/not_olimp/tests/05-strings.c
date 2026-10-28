@@ -21,7 +21,7 @@ static size_t my_len (const char *s) {
     return n;
 }
 
-// Палиндром через два указателя — тот же, что будет в olimp/ol8 (без std::).
+// Палиндром через два указателя — тот же, что будет в olimp/part1/palindrome (без std::).
 static int is_palindrome (const char *s) {
     const char *l = s;
     const char *r = s + my_len (s) - 1;

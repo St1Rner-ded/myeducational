@@ -29,7 +29,7 @@ void try_pointer_itself (int **pp) {
     *pp = &storage;
 }
 
-// Паттерн head из 2nd.c: append без ** смог бы менять список, но не смог бы
+// Паттерн head из linked_list.c: append без ** смог бы менять список, но не мог бы
 // поменять head, если список пустой. ** — именно для этого.
 typedef struct Cell {
     int value;

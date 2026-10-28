@@ -18,10 +18,10 @@
 | 03 | `03-pointer-arithmetic.c` | Сколько байт идёт `p + 1`? Что такое `q - p`? |
 | 04 | `04-matrix.c` | `int[2][3]`: строки, `int (*)[3]`, плоский `malloc` |
 | 05 | `05-strings.c` | Строки = `char*` + `\0`; `char[]` против `char*` |
-| 06 | `06-out-params.c` | int / int\* / int\** в аргументах; head-паттерн из `2nd.c` |
+| 06 | `06-out-params.c` | int / int\* / int\** в аргументах; head-паттерн из `linked_list.c` |
 
 Связь со своим кодом: темы 06 — прямая мотивация `append (Node **head, ...)`
-в `first/1st.c`, `second/2nd.c`; тема 05 — будущий палиндром в `olimp/ol8`.
+в `dynamic_array/dynamic_array.c`, `linked_list/linked_list.c`; тема 05 — будущий палиндром в `olimp/part1/palindrome`.
 
 ## Как запускать
 
@@ -57,7 +57,7 @@ gcc -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wsign-conversion \
    `m[1][2]` при плоском `malloc`.
 5. **05** — объяснить одной фразой, чем `char s[] = "x"` отличается от
    `char *p = "x"` (подсказки: sizeof, где лежат данные, можно ли менять).
-6. **06** — перерисовать из `2nd.c` момент `append(&head, ...)` для ПУСТОГО
+6. **06** — перерисовать из `linked_list.c` момент `append(&head, ...)` для ПУСТОГО
    списка: где `head`, где копия параметра, что делает `*head = new_node`
    и почему без `**` это не сработало бы.
 
