@@ -7,6 +7,7 @@ int main (void) {
     void *p = &a;
     void *q = &A;
     void *k = &Z;
+    if (A == 'A') A += 32;
     printf ("%d - %c - %p\n\n^\n|\n\n%d - %c - %p\n\n|\n|\n\n%d - %c - %p\n", A, A, q, a, a, p, Z, Z, k);
     return 0;
 }
