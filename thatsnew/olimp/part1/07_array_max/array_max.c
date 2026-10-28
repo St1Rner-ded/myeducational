@@ -1,10 +1,13 @@
+//Дан массив из N целых чисел. Найдите наибольший элемент.
+//1 <= N <= 100000, -10000 <= elem <= 10000
+//В рамках симуляции массив генерируется случайно
+
 #include <stdio.h>
 #include <stdlib.h>
 
 int array_max (int *array, size_t asize) {
     int most = array [0];
     for (size_t i = 0; i < asize; ++i) {
-        if (array[i] == 10000) return array[i]; // По условию максимальный элемент массива - 10^4
         if (array[i] > most) most = array [i];
     }
     return most;
