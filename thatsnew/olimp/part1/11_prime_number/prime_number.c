@@ -3,13 +3,7 @@
 
 #include <stdio.h>
 
-size_t strlength (const char *string) {
-    size_t n = 0;
-    while (string[n] != '\0') {
-        n++;
-    }
-    return n;
-}
+#define MAX_N 1000000
 
 int is_prime (const unsigned number) {
     if (number < 2) return 0;
@@ -24,29 +18,9 @@ int is_prime (const unsigned number) {
 
 int main (void) {
     unsigned number = 0;
-    char line[32];
-    printf ("\nEnter your number from 1 to 1000000: ");
-    while (1) {
-        if (fgets (line, sizeof (line), stdin) == NULL) {
-            printf ("\nYou entered an emptiness. Exit.\n");
-            return 1;
-        }
-        if (line[strlength (line) - 1] != '\n') {
-            int c;
-            while ((c = getchar ()) != '\n' && c != EOF) {
-                ;
-            }
-        }
-        if (sscanf (line, "%u", &number) != 1) {
-            printf ("You didn't enter a number. Try again: ");
-            continue;
-        }
-        if (number == 0 || number > 1000000) {
-            printf ("Your number is 0 or too big. Try again: ");
-            continue;
-        }
-        break;
+    if (scanf ("%u", &number) != 1 || number == 0 || number > MAX_N) {
+        return 1;
     }
-    printf ((is_prime (number) == 1) ? "\nYour number is prime.\n\n" : "\nYour number isn't prime.\n\n");
+    printf ((is_prime (number) == 1) ? "YES" : "NO");
     return 0;
 }
