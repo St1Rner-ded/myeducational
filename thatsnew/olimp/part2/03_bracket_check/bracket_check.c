@@ -1,119 +1,89 @@
-//Дана строка из символов «(», «)», «[», «]», «{», «}». 
+//Дана строка из символов «(», «)», «[», «]», «{», «}».
 //Определите, является ли последовательность скобок правильной (каждой открывающей скобке соответствует закрывающая того же типа в правильном порядке).
 //1 <= кол-во символов <= 1000
 
 #include <stdio.h>
-#include <stdlib.h>
 
-typedef struct stackChar {
-    char *data;
-    size_t top;
-    size_t capacity;
-} stackChar;
+#define MAX_L 1000
 
-void stackInit (stackChar *s, size_t init_capacity) {
-    s->data = malloc (init_capacity * sizeof (char));
-    if (!s->data) {
-        perror ("Critical failure: initial memory didn't allocate.");
-        exit (EXIT_FAILURE);
+static int is_bracket (char ch) {
+    return ch == '(' || ch == ')' ||
+           ch == '[' || ch == ']' ||
+           ch == '{' || ch == '}';
+}
+
+static int is_opener (char ch) {
+    return ch == '(' || ch == '[' || ch == '{';
+}
+
+static int is_closer (char ch) {
+    return ch == ')' || ch == ']' || ch == '}';
+}
+
+static int matches (char opener, char closer) {
+    return
+    (opener == '(' && closer == ')') ||
+    (opener == '[' && closer == ']') ||
+    (opener == '{' && closer == '}');
+}
+
+static int read_sequence (char *sequence) {
+    if (scanf("%1000s", sequence) != 1) {
+        return 0;
     }
-    s->top = 0;
-    s->capacity = init_capacity;
-}
-
-short stack_push (stackChar *s, char ch) {
-    if (s->top >= s->capacity) {
-        size_t new_capacity = s->capacity * 2;
-        char *new_data = realloc (s->data, new_capacity * sizeof (char));
-        if (!new_data) return 0;
-        s->data = new_data;
-        s->capacity = new_capacity;
+    int bad = 0;
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF) {
+        if (c != ' ' && c != '\t' && c != '\r') {
+            bad = 1;
+        }
     }
-    s->data[s->top++] = ch;
-    return 1;
-}
-
-short stack_pop (stackChar *s, char *out_ch) {
-    if (s->top == 0) return 0;
-    *out_ch = s->data[--s->top];
-    return 1;
-}
-
-short stack_top (const stackChar *s, char *out_ch) {
-    if (s->top == 0) return 0;
-    *out_ch = s->data[s->top-1];
-    return 1;
-}
-
-void stack_free (stackChar *s) {
-    free (s->data);
-    s->data = NULL;
-    s->top = 0;
-    s->capacity = 0;
-}
-
-size_t strlength (const char *string) {
-    size_t n = 0;
-    while (string[n] != '\0') {
-        n++;
+    if (bad) return 0;
+    if (sequence[0] == '\0') return 0;
+    for (const char *p = sequence; *p; ++p) {
+        if (!is_bracket(*p)) {
+            return 0;
+        }
     }
-    return n;
+    return 1;
 }
 
 int main (void) {
-    char sequence [1001];
-    printf ("Enter your string of brackets (openers and closers must have equal count): ");
-        while (1) {
-            if (fgets (sequence, sizeof (sequence), stdin) == NULL) {
-                printf ("\nNo input. Exit.\n");
-                return 1;
-            }
-            if (sequence[strlength (sequence) - 1] != '\n') {
-                int c;
-                while ((c = getchar ()) != '\n' && c != EOF) {
-                    ;
-                }
-            }
-            size_t len = strlength (sequence);
-            if (len > 0 && sequence[len - 1] == '\n') {
-                sequence[len - 1] = '\0';
-                len = strlength (sequence);
-            }
-            if (len == 0) {
-                printf ("Empty string. Try again: ");
-                continue;
-            }
-            break;
-        }
-    char *p = sequence;
-    stackChar stack;
-    stackInit (&stack, 16);
-    short is_wrong = 0;
-    while (*p) {
-        char ch = *p;
-        if (ch == '(' || ch == '[' || ch == '{') {
-            stack_push (&stack, ch);
-        }
-        else if (ch == ')' || ch == ']' || ch == '}') {
-            char top_ch;
-            if (stack_top (&stack, &top_ch) == 0 || !(top_ch == ch - 1 || top_ch == ch - 2)) {
-                is_wrong = 1;
+    char sequence [MAX_L + 1];
+    if (!read_sequence(sequence)) return 1;
+    char stack [MAX_L];
+    int top = 0;
+    int wrong = 0;
+    for (int i = 0; sequence [i]; ++i) {
+        char ch = sequence[i];
+        if (is_opener (ch)) {
+            if (top >= MAX_L) {
+                wrong = 1;
                 break;
             }
-            else {
-                char discarded;
-                stack_pop (&stack, &discarded);
-            }
+            stack[top] = ch;
+            ++top;
         }
-        ++p;
+        else if (is_closer(ch)) {
+            if (top == 0 || !matches(stack[top - 1], ch)) {
+                wrong = 1;
+                break;
+            }
+            --top;
+        }
+        else {
+            wrong = 1;
+            break;
+        }
     }
-    char any_ch;
-    if (is_wrong == 1 || 1 == stack_top (&stack, &any_ch)) {
-        printf ("Your sequence is wrong.\n");
-        stack_free (&stack);
-        return 0;
-    }    
-    printf ("Your sequence is right.\n");
-    stack_free (&stack);
+    if (!wrong && top) {
+        wrong = 1;
+    }
+    if (wrong) {
+        printf("Your sequence is wrong.\n");
+    }
+    else {
+        printf("Your sequence is right.\n");
+    }
     return 0;
 }
