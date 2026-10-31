@@ -4,60 +4,47 @@
 
 #include <stdio.h>
 
-size_t strlength(char *string) {
-    size_t n = 0;
-    while (string[n] != '\0') {
-        n++;
+#define MAX_L 1000
+
+static int read_string (char *string) {
+    if (scanf("%1000s", string) != 1) {
+        return 0;
     }
-    return n;
+    int bad = 0;
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF) {
+        if (c != ' ' && c != '\t' && c != '\r') {
+            bad = 1;
+        }
+    }
+    if (bad) return 0;
+    if (string[0] == '\0') return 0;
+    return 1;
 }
 
-char to_lower_ascii (char ch) {
+static char to_lower_ascii (char ch) {
     return ('A' <= ch && ch <= 'Z') ? ch+32 : ch;
 }
 
+static int checkvow (char ch) {
+    char low_ch = to_lower_ascii(ch);
+    return
+    low_ch == 'a' ||
+    low_ch == 'e' ||
+    low_ch == 'i' ||
+    low_ch == 'o' ||
+    low_ch == 'u';
+}
+
 int main (void) {
-    char string [1001];
-    printf ("Enter your string: ");
-    while (1) {
-        if (fgets (string, sizeof (string), stdin) == NULL) {
-            printf ("\nNo input. Exit.\n");
-            return 1;
-        }
-        if (string[strlength (string) - 1] != '\n') {
-            int c;
-            while ((c = getchar ()) != '\n' && c != EOF) {
-                ;
-            }
-        }
-        size_t len = strlength (string);
-        if (len > 0 && string[len - 1] == '\n') {
-            string[len - 1] = '\0';
-            len = strlength (string);
-        }
-        if (len == 0) {
-            printf ("Empty string. Try again: ");
-            continue;
-        }
-        break;
-    }
-    unsigned vowel_letters = 0;
+    char string [MAX_L + 1];
+    if (!read_string (string)) return 1;
+    int vowels = 0;
     char *p = string;
-    for (; *p; ++p) {
-        char low_key = to_lower_ascii(*p);
-        if (low_key == 'a' || low_key == 'e' || low_key == 'i' || low_key == 'o' || low_key == 'u') {
-            vowel_letters++;
-        }
+    while (*p != '\0') {
+        if (checkvow(*p)) vowels++;
+        p++;
     }
-    switch (vowel_letters) {
-        case 0:
-            printf ("Your string doesn't have any vowel letters.\n");
-            break;
-        case 1:
-            printf ("Your string has only one vowel letter\n");
-            break;
-        default:
-            printf ("Your string has [%u] vowel letters.\n", vowel_letters);
-    }
+    printf("%d", vowels);
     return 0;
 }
