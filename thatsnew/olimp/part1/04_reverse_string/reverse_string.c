@@ -4,47 +4,38 @@
 
 #include <stdio.h>
 
-size_t strlength(char *string) {
-    size_t n = 0;
-    while (string[n] != '\0') {
-        n++;
+#define MAX_L 1000
+
+static int read_string (char *string) {
+    if (scanf("%1000s", string) != 1) {
+        return 0;
     }
-    return n;
+    int bad = 0;
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF) {
+        if (c != ' ' && c != '\t' && c != '\r') {
+            bad = 1;
+        }
+    }
+    if (bad) return 0;
+    if (string[0] == '\0') return 0;
+    return 1;
 }
 
 int main (void) {
-    char string[1001];
-    printf ("\nEnter your sentence: ");
-    while (1) {
-        if (fgets (string, sizeof (string), stdin) == NULL) {
-            printf ("\nNo input. Exit.\n");
-            return 1;
-        }
-        if (string[strlength (string) - 1] != '\n') {
-            int c;
-            while ((c = getchar ()) != '\n' && c != EOF) {
-                ;
-            }
-        }
-        size_t len = strlength (string);
-        if (len > 0 && string[len - 1] == '\n') {
-            string[len - 1] = '\0';
-            len = strlength (string);
-        }
-        if (len == 0) {
-            printf ("Empty string. Try again: ");
-            continue;
-        }
-        break;
+    char string[MAX_L + 1];
+    if (!read_string (string)) return 1;
+    int len = 0;
+    while (string[len] != '\0' && len < MAX_L) {
+        len++;
     }
-    printf ("Your sentence: %s\n", string);
-    size_t len = strlength (string);
-    printf ("Number of symbols in your sentence: %zu\n", len);
-    char rev_string[1001];
-    for (size_t i = 0; i < len; ++i) {
-        rev_string [i] = string [len - 1 - i];
+    char rev[MAX_L + 1];
+    for (int i = 0; string[i] != '\0'; i++) {
+        rev[i] = string[len-1-i];
     }
-    rev_string [len] = '\0';
-    printf ("Your reversed sentence: %s\n", rev_string);
+    rev[len] = '\0';
+    for (int i = 0; rev[i] != '\0'; ++i) {
+        printf ("%c", rev[i]);
+    }
     return 0;
 }
