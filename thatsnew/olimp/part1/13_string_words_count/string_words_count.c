@@ -3,40 +3,14 @@
 
 #include <stdio.h>
 
-size_t strlength (const char *string) {
-    size_t n = 0;
-    while (string[n] != '\0') {
-        n++;
-    }
-    return n;
-}
+#define MAX_N 1000
 
 int main (void) {
-    printf ("Enter your string:\n\n");
-    char string [1001];
+    char string [MAX_N + 1];
     char last_symb = ' ';
     unsigned words_count = 0;
-    while (1) {
-        if (fgets (string, sizeof (string), stdin) == NULL) {
-            printf ("\nNo input. Exit.\n");
-            return 1;
-        }
-        if (string[strlength (string) - 1] != '\n') {
-            int c;
-            while ((c = getchar ()) != '\n' && c != EOF) {
-                ;
-            }
-        }
-        size_t len = strlength (string);
-        if (len > 0 && string[len - 1] == '\n') {
-            string[len - 1] = '\0';
-            len = strlength (string);
-        }
-        if (len == 0) {
-            printf ("Empty string. Try again: ");
-            continue;
-        }
-        break;
+    if (fgets (string, sizeof (string), stdin) == NULL) {
+        return 1;
     }
     char *p = string;
     if (*p != '\0') {
@@ -47,6 +21,6 @@ int main (void) {
             last_symb = *p;
         }
     }
-    printf ("\nYour string contains %u word(s).\n\n", words_count);
+    printf ("%u\n", words_count);
     return 0;
 }
