@@ -30,7 +30,6 @@ myeducational/
 │   ├── not_olimp/                # Структуры данных и работа с памятью
 │   │   ├── dynamic_array/        # Динамический массив (intVector) на realloc
 │   │   ├── linked_list/          # Односвязный список (Node), разворот in-place за O(N)
-│   │   ├── stack/                # Заготовка для стека (в планировании)
 │   │   ├── png-notes/            # Заметки по тестам 01–02 (MD + PNG)
 │   │   └── tests/                # Серия самодостаточных тестов на указатели (01…06) + run.sh
 │   ├── olimp/                    # Алгоритмические и олимпиадные задачи
@@ -39,7 +38,7 @@ myeducational/
 │   │   └── part2/                # Вторая часть задач
 │   │       ├── 01_array_median/  # Медиана массива (quicksort, медиана-из-трёх, 3-way)
 │   │       ├── 02_fibonacci/     # Числа Фибоначчи (индекс 1–80, size_t)
-│   │       └── 03_bracket_check/ # Баланс скобок (переделка через стек)
+│   │       └── 03_bracket_check/ # Баланс скобок (проверка через стек)
 │   └── testies/                  # Короткие тесты и эксперименты
 │       └── ascii_case_shift/     # Проверка адресов и представления символов на стеке
 │
@@ -94,11 +93,10 @@ alias ccs='gcc -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wsign-co
 - [x] Реализация динамического массива `intVector` (`thatsnew/not_olimp/dynamic_array/dynamic_array.c`)
 - [x] Реализация односвязного списка `Node` с разворотом и очисткой памяти (`thatsnew/not_olimp/linked_list/linked_list.c`)
 - [x] Базовый блок задач `olimp` (`part1` — 20 задач, `part2` — `02_fibonacci`, `03_bracket_check`)
-- [ ] `olimp/part2/01_array_median/array_median.c` — медиана массива, в работе
-  (quicksort с медианой-из-трёх и 3-way разбиением; идёт доводка сортировки)
+- [x] `olimp/part2/01_array_median/array_median.c` — медиана массива
+  (quicksort с медианой-из-трёх и 3-way разбиением; 100 000 элементов за ~30 мс)
 - [x] Палиндром `olimp/part1/08_palindrome/palindrome.c` — переписан и проверен, закоммичен вместе с реструктуризацией `part1`
-- [ ] *(долгий ящик)* Переписать `olimp/part2/03_bracket_check/bracket_check.c` через стек
-  (старая версия висела: `i` не инкрементировался в цикле; файл активно переписывается,
-  рядом в `olimp/cscripts/` лежат стенды для проверки скобочных последовательностей)
-- [ ] Реализовать стек в `thatsnew/not_olimp/stack/stack.c`
+- [x] *(закрыт)* `olimp/part2/03_bracket_check/bracket_check.c` переписан через стек
+  (старая версия висела: `i` не инкрементировался в цикле; стенды для проверки — `olimp/cscripts/`)
+- [x] Реновация ввода: part1 переведена с интерактивной церемонии на потоковый stdio
 - [ ] Закрыть оставшиеся задачи по битовой арифметике и побайтовым операциям (`M2-T2` .. `M2-T4`)
