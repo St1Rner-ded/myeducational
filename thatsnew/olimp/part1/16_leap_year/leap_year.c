@@ -3,45 +3,19 @@
 
 #include <stdio.h>
 
-size_t strlength (const char *string) {
-    size_t n = 0;
-    while (string[n] != '\0') {
-        n++;
-    }
-    return n;
-}
+#define MAX_N 9999
 
-int is_year_leap (const unsigned year) {
+static int is_year_leap (const unsigned year) {
     if (year % 400 == 0) return 1;
     else if (year % 4 == 0 && year % 100 != 0) return 1;
     else return 0;
 }
 
 int main (void) {
-    printf ("\nEnter a year:\n\n");
     unsigned year = 0;
-    char line[32];
-    while (1) {
-        if (fgets (line, sizeof (line), stdin) == NULL) {
-            printf ("\nYou entered an emptiness. Exit.\n");
-            return 1;
-        }
-        if (line[strlength (line) - 1] != '\n') {
-            int c;
-            while ((c = getchar ()) != '\n' && c != EOF) {
-                ;
-            }
-        }
-        if (sscanf (line, "%u", &year) != 1) {
-            printf ("You didn't enter a year. Try again: ");
-            continue;
-        }
-        if (year == 0 || year > 9999) {
-            printf ("Your year is 0 or too big. Try again: ");
-            continue;
-        }
-        break;
+    if (scanf("%u", &year) != 1 || year == 0 || year > MAX_N) {
+        return 1;
     }
-    printf ((is_year_leap(year) == 1) ? "\nYour year is leap.\n\n" : "\nYour year is common.\n\n");
+    printf ((is_year_leap(year) == 1) ? "YES" : "NO");
     return 0;
 }
