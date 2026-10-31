@@ -3,39 +3,14 @@
 
 #include <stdio.h>
 
-size_t strlength (const char *string) {
-    size_t n = 0;
-    while (string[n] != '\0') {
-        n++;
-    }
-    return n;
-}
+#define MIN_T -273
+#define MAX_T 1000
 
 int main (void) {
     int celcius = 0;
-    char line[6];
-    printf ("Enter temperature in Celcius: ");
-    while (1) {
-        if (fgets (line, sizeof (line), stdin) == NULL) {
-            printf ("\nYou entered an emptiness. Exit.\n");
-            return 1;
-        }
-        if (line[strlength (line) - 1] != '\n') {
-            int c;
-            while ((c = getchar ()) != '\n' && c != EOF) {
-                ;
-            }
-        }
-        if (sscanf (line, "%d", &celcius) != 1) {
-            printf ("You didn't enter a number. Try again: ");
-            continue;
-        }
-        if (celcius < -273 || celcius > 1000) {
-            printf ("Your number is too low or too big. Try again: ");
-            continue;
-        }
-        break;
+    if (scanf ("%d", &celcius) != 1 || celcius < MIN_T || celcius > MAX_T) {
+        return 1;
     }
-    printf ("\nTemperature in Fahrenhite: %d\n", celcius * 9/5 + 32);
+    printf ("%d", celcius * 9/5 + 32);
     return 0;
 }
