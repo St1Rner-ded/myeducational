@@ -3,20 +3,28 @@
 //Здесь в рамках симуляции массив генерируется случайно
 
 #include <stdio.h>
-#include <stdlib.h>
+
+#define MAX_N 100000
+#define MAX_ELEM 10000
+#define MIN_ELEM -10000
 
 int main (void) {
-    srand(0);
-    size_t const N = (size_t)rand() % 100000 + 1;
-    printf ("Quantity of elements in array: [%zu]\n", N);
-    int array[N];
-    for (size_t i = 0; i < N; ++i) {
-        array[i] = rand() % 20001 - 10000;
+    int n = 0;
+    static int array[MAX_N];
+    if (scanf("%d", &n) != 1 || n < 1 || n > MAX_N) {
+        return 1;
     }
-    int arr_sum = 0;
-    for (size_t i = 0; i < N; ++i) {
-        arr_sum += array[i];
+    for (int i = 0; i < n; ++i) {
+        int z = 0;
+        if (scanf ("%d", &z) != 1 || z < MIN_ELEM || z > MAX_ELEM) {
+            return 1;
+        }
+        array[i] = z;
     }
-    printf ("Sum of all elements in array is: [%d]\n", arr_sum);
+    int sum = 0;
+    for (int i = 0; i < n; ++i) {
+        sum += array[i];
+    }
+    printf ("%d", sum);
     return 0;
 }
