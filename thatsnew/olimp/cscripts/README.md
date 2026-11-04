@@ -11,3 +11,6 @@
 | `eq_symbols.c` | строки из повторяющихся символов | строковые part1: 04_reverse_string, 05_vowel_count, 08_palindrome, 13/14/20 |
 | `bracket_seq_right.c` | заведомо правильная скобочная последовательность (1000) | part2/03_bracket_check |
 | `bracket_seq_wrong.c` | заведомо неправильная скобочная последовательность (1000) | part2/03_bracket_check |
+| `big_number.c` | предельный вход: 10⁹ и 10¹⁸ | part2/05_quick_power |
+| `segments_gen.c` | N случайных отрезков (старт + длина) | part3/03_max_noncrosses |
+| `labyr_gen.c` | случайный лабиринт с гарантированным путём S→E | part3/02_labyrinth_shortest_route |
