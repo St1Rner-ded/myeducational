@@ -32,6 +32,6 @@ jobs:
           # Твои локальные флаги + санитайзеры. 
           # Используем '\;', чтобы компилировать каждый файл по отдельности.
           # Выводим в /dev/null, так как нам нужна только проверка сборки и линковки.
-          find thatsnew -name "*.c" -exec $CC -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wsign-conversion -Wformat=2 -Werror -fsanitize=address,undefined -o /dev/null {} \;
+          find present -name "*.c" -exec $CC -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wsign-conversion -Wformat=2 -Werror -fsanitize=address,undefined -o /dev/null {} \;
           
           echo "✅ Все файлы успешно собраны без предупреждений!"
