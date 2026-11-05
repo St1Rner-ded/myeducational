@@ -88,7 +88,8 @@ gcc -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wsign-conversion \
   на C11). Этапы с карточками задач: `01_dynamic_memory` (malloc/realloc),
   `02_matrix_gauss` (солвер Ax=b), `03_rc_solver` (MNA + трапецы),
   `04_nonlinear` (диод, Ньютон–Рафсон), `05_netlist` (парсер списка соединений).
-  Дорожная карта — `present/circuitC/README.md`. Активный этап: 01.
+  Дорожная карта — `present/circuitC/README.md`. Пройден: 01 (динамический
+  массив с доращиванием, строгая сборка + ASan чистые). Активный этап: 02.
 
 ## 8. Бэклог из archive/solutions/
 
