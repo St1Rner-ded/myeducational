@@ -84,6 +84,11 @@ gcc -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wsign-conversion \
   на потоковом stdio. Паттерн: `if (scanf(...) != 1 || <диапазон>) return 1;`,
   строки с пробелами — `fgets`; спецификатор формата = типу переменной (`%u`/`%zu`).
 - Оставшиеся нерешённые олимпиадные задачи (`olimp/`).
+- `present/circuitC/` — долгий трек к своему симулятору схем (аналог circuitjs
+  на C11). Этапы с карточками задач: `01_dynamic_memory` (malloc/realloc),
+  `02_matrix_gauss` (солвер Ax=b), `03_rc_solver` (MNA + трапецы),
+  `04_nonlinear` (диод, Ньютон–Рафсон), `05_netlist` (парсер списка соединений).
+  Дорожная карта — `present/circuitC/README.md`. Активный этап: 01.
 
 ## 8. Бэклог из archive/solutions/
 
