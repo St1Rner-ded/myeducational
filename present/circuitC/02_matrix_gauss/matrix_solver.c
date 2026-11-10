@@ -26,12 +26,14 @@ void matrix_start (matrix *net) {
     net->rows = n;
     net->data = malloc (sizeof (*(net->data)) * net->rows * net->cols);
     if (net->data == NULL) {
+        printf ("Ошибка выделения памяти\n");
         free (net->data);
         exit (1);
     }
     for (size_t i = 0; i < n; i++) {
         for (size_t j = 0; j < n; j++) {
             if (scanf ("%lf", &x) != 1) {
+                printf ("Ошибка чтения ввода матрицы\n");
                 free (net->data);
                 exit (1);
             }
@@ -40,6 +42,7 @@ void matrix_start (matrix *net) {
     }
     for (size_t i = 0; i < n; i++) {
         if (scanf ("%lf", &v) != 1) {
+            printf ("Ошибка чтения ввода вектора\n");
             free (net->data);
             exit (1);
         }
@@ -73,6 +76,7 @@ int main (void) {
             }
         }
         if (max == 0.0) {
+            printf ("Матрица вырожденная\n");
             free (jigsaw.data);
             return 1;
         }
@@ -88,12 +92,6 @@ int main (void) {
             }
         }
     }
-    for (size_t i = 0; i < jigsaw.rows; i++) {
-        for (size_t j = 0; j < jigsaw.cols; j++) {
-            printf ("%f ", jigsaw.data[i * jigsaw.cols + j]);
-        }
-        printf ("\n");
-    }
     for (size_t i = jigsaw.rows; i-- > 0;) {
         double sum_row = 0.0;
         for (size_t j = i + 1; j < jigsaw.rows; j++) {
@@ -101,7 +99,6 @@ int main (void) {
         }
         jigsaw.data[i * jigsaw.cols + jigsaw.rows] = (jigsaw.data[i * jigsaw.cols + jigsaw.rows] - sum_row) / jigsaw.data[i * jigsaw.cols + i];
     }
-    printf ("\n");
     for (size_t i = 0; i < jigsaw.rows; i++) {
         printf ("%.6f ", jigsaw.data[i * jigsaw.cols + jigsaw.rows]);
     }

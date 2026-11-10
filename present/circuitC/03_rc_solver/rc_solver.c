@@ -117,7 +117,11 @@ int main (void) {
     matr.data = malloc (sizeof (*(matr.data)) * matr.rows * matr.cols);
     for (double t = sim.dt; t <= sim.t_max + sim.dt / 2; t += sim.dt) {
         build_matrix (&matr, &voltage, &cap, &conduct);
-        matrix_solver (&matr);
+        if (matrix_solver (&matr) == 1) {
+            free (matr.data);
+            printf ("Матрица вырождена\n");
+            return 1;
+        }
         double Uc = matr.data[5];
         printf ("%f %f\n", t, Uc);
         double new_i = cap.g_eq * (Uc - cap.u) - cap.i;
