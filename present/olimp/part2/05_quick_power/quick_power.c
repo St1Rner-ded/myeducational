@@ -13,7 +13,7 @@
 #define MOD 1000000007
 
 int main (void) {
-    size_t a = 0, n = 0, cur = 0, result = 1, k = 0;
+    size_t a = 0, n = 0, cur = 0, result = 1;
     for (int i = 0; i < 2; i++) {
         size_t z = 0;
         if (scanf ("%zu", &z) != 1 || (i == 0 && (z > MAX_a || z == 0)) || (i == 1 && z > MAX_n)) {
@@ -33,7 +33,6 @@ int main (void) {
         cur *= cur;
         cur %= MOD;
         n >>= 1;
-        k++;
     }
     printf ("%zu\n", result);
     return 0;
